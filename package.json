@@ -33,7 +33,8 @@
 	"activationEvents": [
 		"onCommand:mcfs.open",
 		"onFileSystem:mcfs",
-		"onLanguage:AMPscript"
+		"onLanguage:AMPscript",
+		"onView:mcfs.dataExtensionInsights"
 	],
 	"contributes": {
 		"languages": [
@@ -112,11 +113,28 @@
 				}
 			]
 		},
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "mcfsDataExtensions",
+					"title": "MCFS Data Extensions",
+					"icon": "images/logo.png"
+				}
+			]
+		},
+		"views": {
+			"mcfsDataExtensions": [
+				{
+					"id": "mcfs.dataExtensionInsights",
+					"name": "Data Extension Insights"
+				}
+			]
+		},
 		"viewsWelcome": [
 			{
 				"view": "explorer",
 				"contents": "Open MCFS connection manager and connect directly to your Salesforce Marketing Cloud account \n[Connect to SFMC](command:mcfs.open)",
-				"when": ""
+				"when": "true"
 			}
 		],
 		"configuration": {

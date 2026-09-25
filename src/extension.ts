@@ -8,6 +8,7 @@ import { Utils, WebPanel, WebPanelMessage } from './libs/utils';
 import { ConnectionController } from './libs/connectionController';
 import { FolderManagerUri } from './libs/folderManagerUri';
 import { FolderController } from './libs/folderController';
+import { DataExtensionInsightsView } from './dataExtensionInsightsView';
 
 let isConnectionManagerOpened = false;
 
@@ -22,6 +23,11 @@ export async function activate(context: vscode.ExtensionContext) {
 		let connections = Utils.getInstance().getConfig('connections');
 
 		ConnectionController.getInstance().setConnections(connections);
+		context.subscriptions.push(vscode.window.registerWebviewViewProvider(
+			'mcfs.dataExtensionInsights',
+			new DataExtensionInsightsView(context.extensionUri),
+			{ webviewOptions: { retainContextWhenHidden: true } }
+		));
 
 		const panel = new WebPanel('mcfs_connection_manager', 'MCFS Connection Manager');
 
