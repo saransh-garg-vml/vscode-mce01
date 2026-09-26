@@ -7,6 +7,8 @@ import { ContentBuilderFolderManager, AssetSubtype, ContentBuilderStandardTypes 
 import { SqlQueriesFolderManager } from './folderManagers/sqlQueries';
 import { ScriptsFolderManager } from './folderManagers/scripts';
 import { DataextensionFolderManager } from './folderManagers/dataextensions';
+import { AutomationsFolderManager } from './folderManagers/automations';
+import { JourneysFolderManager } from './folderManagers/journeys';
 import { Utils } from './utils';
 
 export class FolderController {
@@ -24,6 +26,8 @@ export class FolderController {
 		this.addManager(new ContentBuilderFolderManager("Cloud Pages", false, [AssetSubtype.WEBPAGE], true));
 		this.addManager(new SqlQueriesFolderManager());
 		this.addManager(new ScriptsFolderManager());
+		this.addManager(new AutomationsFolderManager());
+		this.addManager(new JourneysFolderManager());
 		this.addManager(new DataextensionFolderManager("Dataextensions", false, "dataextension_default", "dataextension"));
 		this.addManager(new DataextensionFolderManager("Dataextensions: Shared", false, "shared_dataextension_default", "shared_dataextension"));
 	}

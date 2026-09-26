@@ -1,5 +1,9 @@
+import * as vscode from 'vscode';
+import { Asset } from './asset';
 import { ApiRequestConfig } from './httpUtils';
 import { ConnectionController, SoapOperation, SoapRequestConfig } from './connectionController';
+import { FolderController } from './folderController';
+import { FolderManagerUri } from './folderManagerUri';
 import { SoapUtils } from './soapUtils';
 
 export interface DataExtensionSummary {
@@ -41,25 +45,83 @@ export class DataExtensionInsightsService {
 			return [];
 		}
 
-		const dataExtensions = await this.retrieveDataExtensions(connectionId, {
-			Property: 'Name',
-			SimpleOperator: 'like',
-			Value: `%${searchTerm}%`
-		});
-		const folders = await this.retrieveFolders(connectionId);
-		const fieldCounts = await this.retrieveFieldCounts(connectionId);
+		const normalizedSearchTerm = searchTerm.toLocaleLowerCase();
+		const dataExtensions = (await this.retrieveMountedDataExtensions(connectionId))
+			.filter(dataExtension =>
+				dataExtension.name.toLocaleLowerCase().includes(normalizedSearchTerm) ||
+				dataExtension.customerKey.toLocaleLowerCase().includes(normalizedSearchTerm));
 
 		return Promise.all(dataExtensions.map(async dataExtension => {
-			const recordCount = await this.retrieveApproximateRecordCount(connectionId, dataExtension.customerKey);
+			const [fieldCount, recordCount] = await Promise.all([
+				this.getMountedFieldCount(dataExtension.asset),
+				this.retrieveApproximateRecordCount(connectionId, dataExtension.customerKey)
+			]);
 			return {
 				name: dataExtension.name,
 				customerKey: dataExtension.customerKey,
 				type: dataExtension.type,
-				folderPath: this.getFolderPath(dataExtension.folderId, folders),
-				fieldCount: fieldCounts.get(dataExtension.customerKey) || 0,
+				folderPath: dataExtension.folderPath,
+				fieldCount,
 				recordCount
 			};
 		}));
+	}
+
+	private async retrieveMountedDataExtensions(connectionId: string): Promise<Array<DataExtensionMetadata & { asset: Asset }>> {
+		const results: Array<DataExtensionMetadata & { asset: Asset }> = [];
+		for (const mountFolderName of ['Dataextensions', 'Dataextensions: Shared']) {
+			const root = new FolderManagerUri(vscode.Uri.parse(`mcfs://${connectionId}/${mountFolderName}`));
+			try {
+				await this.collectMountedDataExtensions(root, results);
+			}
+			catch (_) {
+				if (mountFolderName === 'Dataextensions') throw _;
+			}
+		}
+		return results;
+	}
+
+	private async collectMountedDataExtensions(
+		directory: FolderManagerUri,
+		results: Array<DataExtensionMetadata & { asset: Asset }>
+	): Promise<void> {
+		const controller = FolderController.getInstance();
+		const [subdirectories, assets] = await Promise.all([
+			controller.getSubdirectories(directory),
+			controller.getAssets(directory)
+		]);
+
+		assets.forEach(asset => {
+			const metadata = JSON.parse(asset.content);
+			const name = SoapUtils.getStrProp(metadata, 'Name') || asset.name;
+			const customerKey = SoapUtils.getStrProp(metadata, 'CustomerKey');
+			if (!customerKey) return;
+			results.push({
+				name,
+				customerKey,
+				type: SoapUtils.getStrProp(metadata, 'IsFiltered').toLowerCase() === 'true' ? 'Filtered' : 'Standard',
+				folderPath: [directory.mountFolderName, directory.localPath].filter(Boolean).join(' / '),
+				fieldCount: 0,
+				isSendable: SoapUtils.getStrProp(metadata, 'IsSendable').toLowerCase() === 'true',
+				asset
+			});
+		});
+
+		for (const subdirectory of subdirectories) {
+			const childUri = vscode.Uri.parse(directory.getChildPath(subdirectory));
+			await this.collectMountedDataExtensions(new FolderManagerUri(childUri), results);
+		}
+	}
+
+	private async getMountedFieldCount(asset: Asset): Promise<number> {
+		try {
+			const content = await asset.getFile('_columns.readonly.json').read();
+			const columns = JSON.parse(new TextDecoder('utf-8').decode(content));
+			return Array.isArray(columns) ? columns.length : 0;
+		}
+		catch (_) {
+			return 0;
+		}
 	}
 
 	async getUsage(connectionId: string, dataExtension: DataExtensionSummary): Promise<DataExtensionUsage> {
