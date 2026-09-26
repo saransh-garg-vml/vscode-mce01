@@ -3,6 +3,22 @@ All notable changes to the "MCE Download" extension will be documented in this f
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [1.0.3] - 2026-09-27
+- Fetch the Journey's entry event definition via "Get Event Definitions - By Key" into `_entryEvent.readonly.json`
+- Renamed `journey.json` to `completeJourney.json`
+
+## [1.0.2] - 2026-09-26
+- Fetch full Journey details ("Get Interactions - By ID") when a Journey folder is opened
+- Added `_activities.readonly.json` and `_triggers.readonly.json` for each Journey
+
+## [1.0.3] - 2026-09-27
+- Fetch the Journey's entry event definition via "Get Event Definitions - By Key" into `_entryEvent.readonly.json`
+- Renamed `journey.json` to `completeJourney.json`
+
+## [1.0.2] - 2026-09-26
+- Fetch full Journey details ("Get Interactions - By ID") when a Journey folder is opened
+- Added `_activities.readonly.json` and `_triggers.readonly.json` for each Journey
+
 ## [1.0.2] - 2026-09-26
 - Fetch full Journey details when a Journey folder is opened
 - Add read-only JSON files for Journey activities and triggers

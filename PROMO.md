@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
-# MCE Download v1.0.1
-=======
-# MCE Download v1.0.2
->>>>>>> Stashed changes
+# MCE Download v1.0.3
 
 Welcome to **MCE Download** for Visual Studio Code. Connect to Salesforce Marketing Cloud to work with content, data extensions, journeys, automations, and queries. Share feedback in the [MCE Download repository](https://github.com/saransh-garg-vml/vscode-mce01).
 
@@ -11,6 +7,8 @@ Welcome to **MCE Download** for Visual Studio Code. Connect to Salesforce Market
 
 + Fetch full Journey details (via "Get Interactions (Journeys) - By ID") when a Journey folder is opened
 + Read-only "_activities.readonly.json" and "_triggers.readonly.json" files for each Journey
++ Read-only "_entryEvent.readonly.json" file with the Journey's entry event definition (via "Get Event Definitions - By Key")
++ Renamed "journey.json" to "completeJourney.json"
 + Data Extension Insights view: search a Data Extension and see its usage and data flow
 ```
 
@@ -35,26 +33,18 @@ Welcome to **MCE Download** for Visual Studio Code. Connect to Salesforce Market
 ### To explore a Journey
 * Connect to your MC account
 * Open the "Journeys" folder and select a `<name>.journey` folder
-* MCE Download calls the Journey Builder "Get Interactions - By ID" API and generates `journey.json`, `_activities.readonly.json` and `_triggers.readonly.json` for that Journey
+* MCE Download calls the Journey Builder "Get Interactions - By ID" API and generates `completeJourney.json`, `_activities.readonly.json`, `_triggers.readonly.json` and `_entryEvent.readonly.json` for that Journey
 
 
 # Direct connection to Marketing Cloud
 
 ## 1. Connect directly to your Marketing Cloud Account
 
-<<<<<<< Updated upstream
-With a quick 5 minutes setup you'll be able to edit content blocks, emails, cloudpages, dataextensions and SQL queries without leaving Visual Studio Code. You can now avoid frequent copy-pasting and focus on your work. Have a look a quick demo below. To open Connection Manager: 
-* Press F1 (or 'CMD+Shift+P' on Mac and 'CTRL+Shift+P' on Windows) 
-* Start typing 'MCED'
-* Find 'MCED: Connection Manager' and then press Enter
-* You'll find detailed setup instuctions there
-=======
 With a quick 5 minutes setup you'll be able to edit content blocks, emails, cloudpages, dataextensions and SQL queries, and browse Automations and Journeys, without leaving Visual Studio Code. You can now avoid frequent copy-pasting and focus on your work. Have a look a quick demo below. To open Connection Manager:
 * Press F1 (or 'CMD+Shift+P' on Mac and 'CTRL+Shift+P' on Windows)
 * Start typing 'MCED'
 * Find 'MCED: Connection Manager' and then press Enter
 * You'll find detailed setup instructions there
->>>>>>> Stashed changes
 
 ![MCE Download](https://raw.githubusercontent.com/saransh-garg-vml/vscode-mce01/main/images/mcfs.gif)
 
