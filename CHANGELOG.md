@@ -3,12 +3,9 @@ All notable changes to the "MCE Download" extension will be documented in this f
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## [1.0.1] - 2026-09-26
-- Published as MCE Download by Saransh Garg
-- Added Data Extension insights, journeys, and automations support
-- Renamed the extension namespace and commands to MCED
-
-The entries below record the history of the original MIT-licensed AMPscript extension.
+## [1.0.2] - 2026-09-26
+- Fetch full Journey details when a Journey folder is opened
+- Add read-only JSON files for Journey activities and triggers
 
 ## [3.0.6] - 2022-11-15
 - Support for Shared Dataextensions (only when connected to ENT BU)

@@ -2,7 +2,7 @@
 	"name": "mced",
 	"displayName": "MCE Download",
 	"description": "Connect VS Code directly to your Marketing Cloud Account, download your content, data extensions, journeys and automations",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"publisher": "saransh-garg-vml",
 	"author": {
 		"name": "Saransh Garg"
@@ -23,6 +23,7 @@
 		"sfmc",
 		"mc",
 		"content builder",
+		"mcfs",
 		"mced"
 	],
 	"main": "./out/src/extension",
