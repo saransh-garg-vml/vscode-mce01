@@ -3,6 +3,10 @@ All notable changes to the "AMPScript" extension will be documented in this file
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [1.0.2] - 2026-09-26
+- Fetch full Journey details when a Journey folder is opened
+- Add read-only JSON files for Journey activities and triggers
+
 ## [3.0.6] - 2022-11-15
 - Support for Shared Dataextensions (only when connected to ENT BU)
 

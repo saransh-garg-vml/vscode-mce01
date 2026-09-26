@@ -6,6 +6,7 @@ import { ApiRequestConfig } from '../httpUtils';
 
 export class JourneysFolderManager extends FolderManager {
 	readonly mountFolderName: string = 'Journeys';
+	private readonly detailsCache = new Map<string, Promise<Asset>>();
 
 	async getSubdirectories(directoryUri: FolderManagerUri): Promise<string[]> {
 		return [];
@@ -36,6 +37,34 @@ export class JourneysFolderManager extends FolderManager {
 		return assets;
 	}
 
+	async getAssetFiles(assetUri: FolderManagerUri): Promise<Array<AssetFile>> {
+		let detailsRequest = this.detailsCache.get(assetUri.globalPath);
+
+		if (detailsRequest === undefined) {
+			detailsRequest = this.getDetailedAsset(assetUri).catch(error => {
+				this.detailsCache.delete(assetUri.globalPath);
+				throw error;
+			});
+			this.detailsCache.set(assetUri.globalPath, detailsRequest);
+		}
+
+		const asset = await detailsRequest;
+		this.assetsCache.set(assetUri.globalPath, asset);
+		return asset.files;
+	}
+
+	async getAsset(assetUri: FolderManagerUri, forceRefresh?: boolean): Promise<Asset> {
+		if (forceRefresh === true) {
+			this.detailsCache.delete(assetUri.globalPath);
+		}
+		else {
+			const detailsRequest = this.detailsCache.get(assetUri.globalPath);
+			if (detailsRequest !== undefined) return detailsRequest;
+		}
+
+		return super.getAsset(assetUri, forceRefresh);
+	}
+
 	async saveAsset(asset: Asset): Promise<void> {
 		throw new Error('Journeys are read-only in MCFS');
 	}
@@ -53,7 +82,35 @@ export class JourneysFolderManager extends FolderManager {
 	}
 
 	private extractFiles(journey: any): Array<AssetFile> {
-		return [new AssetFile('journey.json', JSON.stringify(journey, null, 2), '')];
+		return [
+			new AssetFile('journey.json', JSON.stringify(journey, null, 2), ''),
+			new AssetFile('_activities.readonly.json', JSON.stringify(journey.activities || [], null, 2), ''),
+			new AssetFile('_triggers.readonly.json', JSON.stringify(journey.triggers || [], null, 2), '')
+		];
+	}
+
+	private async getDetailedAsset(assetUri: FolderManagerUri): Promise<Asset> {
+		const summaryAsset = await super.getAsset(assetUri, false);
+		const summary = JSON.parse(summaryAsset.content);
+		const id = summary.id || summary.definitionId;
+
+		if (!id) {
+			throw new Error(`Journey ${summaryAsset.name} does not have an ID`);
+		}
+
+		const config = new ApiRequestConfig({
+			method: 'get',
+			url: `/interaction/v1/interactions/${encodeURIComponent(String(id))}`
+		});
+		const details = await ConnectionController.getInstance().restRequest(assetUri.connectionId, config);
+
+		return new Asset(
+			details.name || details.definitionName || summaryAsset.name,
+			summaryAsset.directoryName,
+			JSON.stringify(details, null, 2),
+			assetUri.connectionId,
+			this.extractFiles(details)
+		);
 	}
 
 	private getItems(data: any): Array<any> {
