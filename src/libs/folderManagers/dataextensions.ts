@@ -44,7 +44,7 @@ export class DataextensionFolderManager extends FolderManager {
         this.directoriesCache = new Map<string, number>();
 
 		this.customActions.push({
-			command: "mcfs.dataextension.filter",
+			command: "mced.dataextension.filter",
 			waitLabel: "Filtering a Dataextension",
 			callback: (fmUri: FolderManagerUri, content: string): Promise<string | undefined> => this.customActionFilter(fmUri, content)
 		} as CustomAction);

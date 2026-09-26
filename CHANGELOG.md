@@ -1,7 +1,14 @@
 # Change Log
-All notable changes to the "AMPScript" extension will be documented in this file.
+All notable changes to the "MCE Download" extension will be documented in this file.
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+
+## [1.0.1] - 2026-09-26
+- Published as MCE Download by Saransh Garg
+- Added Data Extension insights, journeys, and automations support
+- Renamed the extension namespace and commands to MCED
+
+The entries below record the history of the original MIT-licensed AMPscript extension.
 
 ## [3.0.6] - 2022-11-15
 - Support for Shared Dataextensions (only when connected to ENT BU)

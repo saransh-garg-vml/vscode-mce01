@@ -37,11 +37,11 @@ export class JourneysFolderManager extends FolderManager {
 	}
 
 	async saveAsset(asset: Asset): Promise<void> {
-		throw new Error('Journeys are read-only in MCFS');
+		throw new Error('Journeys are read-only in MCED');
 	}
 
 	async setAssetFile(asset: Asset, file: AssetFile): Promise<void> {
-		throw new Error('Journeys are read-only in MCFS');
+		throw new Error('Journeys are read-only in MCED');
 	}
 
 	getAssetDirectoryName(name: string, assetData: any): string {

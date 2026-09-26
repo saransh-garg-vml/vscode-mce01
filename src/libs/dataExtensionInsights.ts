@@ -70,7 +70,7 @@ export class DataExtensionInsightsService {
 	private async retrieveMountedDataExtensions(connectionId: string): Promise<Array<DataExtensionMetadata & { asset: Asset }>> {
 		const results: Array<DataExtensionMetadata & { asset: Asset }> = [];
 		for (const mountFolderName of ['Dataextensions', 'Dataextensions: Shared']) {
-			const root = new FolderManagerUri(vscode.Uri.parse(`mcfs://${connectionId}/${mountFolderName}`));
+			const root = new FolderManagerUri(vscode.Uri.parse(`mced://${connectionId}/${mountFolderName}`));
 			try {
 				await this.collectMountedDataExtensions(root, results);
 			}

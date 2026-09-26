@@ -1,5 +1,5 @@
 {
-	"name": "mcfs-connection-manager",
+	"name": "mced-connection-manager",
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
