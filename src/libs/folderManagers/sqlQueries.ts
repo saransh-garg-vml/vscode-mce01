@@ -15,7 +15,7 @@ export class SqlQueriesFolderManager extends FolderManager {
 		this.directoriesCache = new Map<string, Promise<Array<Directory>>>();
 
 		this.customActions.push({
-			command: "mcfs.query.run",
+			command: "mced.query.run",
 			waitLabel: "Running a Query",
 			callback: (fmUri: FolderManagerUri, content: string): Promise<string | undefined> => this.customActionRunQuery(fmUri, content)
 		} as CustomAction);

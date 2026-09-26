@@ -1,6 +1,6 @@
-# MCFS [AMPScript] v3.0.6
+# MCE Download v1.0.1
 
-Greetings Marketing Cloud Experts! You've just updated (or installed) an **AMPscript [MCFS]** extension for Visual Studio Code. This version brings some really cool new features, that I would like to share with you. Share your ideas using [this form](https://docs.google.com/forms/d/e/1FAIpQLSc8NCJcqTxMIIJ5J1pWKTnPY2JewvTS8GU6b9-Lvhdze1N4RA/viewform?usp=sf_link), leave your feedback on the [Extension Page](https://marketplace.visualstudio.com/items?itemName=sergey-agadzhanov.AMPscript) or add a star on my [github repository](https://github.com/Bizcuit/vscode-ampscript).
+Welcome to **MCE Download** for Visual Studio Code. Connect to Salesforce Marketing Cloud to work with content, data extensions, journeys, automations, and queries. Share feedback in the [MCE Download repository](https://github.com/saransh-garg-vml/vscode-mce01).
 
 ```diff
 + === NEW FEATURES ===
@@ -12,19 +12,19 @@ Greetings Marketing Cloud Experts! You've just updated (or installed) an **AMPsc
 ### To run an SQL query
 * Connect to your MC account
 * Find your SQL Query asset in the "SQL Queries" folder and open a "query.sql" file
-* Click a "Run SQL Query" button located in the top right corner of the editor (or run a "MCFS: Run SQL Query" command from the Command Pallet)
+* Click a "Run SQL Query" button located in the top right corner of the editor (or run an "MCED: Run SQL Query" command from the Command Palette)
 
-![SQL Queries](https://raw.githubusercontent.com/Bizcuit/vscode-ampscript/master/images/mcfs_runquery.jpg)
+![SQL Queries](https://raw.githubusercontent.com/saransh-garg-vml/vscode-mce01/main/images/mcfs_runquery.jpg)
 
 
 ### To filter a Dataextension
 * Connect to your MC account
 * Find your Dataextension asset in the "Dataextensions" folder and open a "rows.csv" file
-* Click a "Filter a Dataextension" button located in the top right corner of the editor (or run a "MCFS: Filter a Dataextension" command from the Command Pallet)
+* Click a "Filter a Dataextension" button located in the top right corner of the editor (or run an "MCED: Filter a Dataextension" command from the Command Palette)
 * Set the filter and hit enter
 * Filter example: OrderID = 'ORD2123F2' AND SubscriberKey = 'ABC'
 
-![Dataextensions](https://raw.githubusercontent.com/Bizcuit/vscode-ampscript/master/images/mcfs_filterde.jpg)
+![Dataextensions](https://raw.githubusercontent.com/saransh-garg-vml/vscode-mce01/main/images/mcfs_filterde.jpg)
 
 
 ## SFMC DevTools published
@@ -38,11 +38,11 @@ We have been talking about this behind the scenes already for quite some time bu
 
 With a quick 5 minutes setup you'll be able to edit content blocks, emails, cloudpages, dataextensions and SQL queries without leaving Visual Studio Code. You can now avoid frequent copy-pasting and focus on your work. Have a look a quick demo below. To open Connection Manager: 
 * Press F1 (or 'CMD+Shift+P' on Mac and 'CTRL+Shift+P' on Windows) 
-* Start typing 'MCFS'
-* Find 'MCFS Connecton Manager' and then press Enter
+* Start typing 'MCED'
+* Find 'MCED: Connection Manager' and then press Enter
 * You'll find detailed setup instuctions there
 
-![AMPScript](https://raw.githubusercontent.com/Bizcuit/vscode-ampscript/master/images/mcfs.gif)
+![MCE Download](https://raw.githubusercontent.com/saransh-garg-vml/vscode-mce01/main/images/mcfs.gif)
 
 ## 1.a How to connect to Marketing Cloud
 
@@ -58,9 +58,9 @@ As of now, you **can only edit existing assets** (content blocks, emails, cloudp
 * Grant access to all required BUs
 * Provide package details in the connection manager below, save it and connect
 * You'll find the entire Content Builder library in your File Explorer tab
-* To open Connection Manager next time press F1 (or 'CMD+Shift+P' on Mac and 'CTRL+Shift+P' on Windows) and start typing 'MCFS'. Find 'MCFS Connecton Manager' and then hit Enter
+* To open Connection Manager next time press F1 (or 'CMD+Shift+P' on Mac and 'CTRL+Shift+P' on Windows) and start typing 'MCED'. Find 'MCED: Connection Manager' and then hit Enter
 
-Detailed instructions with screenshots are available directly in the Connection Manager. To open Connection Manager press F1 (or 'CMD+Shift+P' on Mac and 'CTRL+Shift+P' on Windows) and start typing 'MCFS'. Find 'MCFS Connecton Manager' and then hit Enter.
+Detailed instructions with screenshots are available directly in the Connection Manager. To open Connection Manager press F1 (or 'CMD+Shift+P' on Mac and 'CTRL+Shift+P' on Windows) and start typing 'MCED'. Find 'MCED: Connection Manager' and then hit Enter.
 
 ### Assets that you can work with
 * Content Builder assets (Emails, Messages and Content Blocks)
@@ -92,4 +92,4 @@ Each asset folder includes a readonly '__raw.readonly.json' file. This is an API
 
 Now you can mouse hover a function name in your code and a small popup window including documentation on this function will show up. Check a small example below
 
-![Hover snippets](https://raw.githubusercontent.com/Bizcuit/vscode-ampscript/master/images/screenshot_hoversnippets.jpg)
+![Hover snippets](https://raw.githubusercontent.com/saransh-garg-vml/vscode-mce01/main/images/screenshot_hoversnippets.jpg)
