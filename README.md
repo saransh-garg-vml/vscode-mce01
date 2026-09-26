@@ -1,6 +1,6 @@
-# MCFS [AMPScript]: Virtual filesystem for Marketing Cloud, syntax highlighting, code snippets and more
+# MCE Download: Salesforce Marketing Cloud content in VS Code
 
-![AMPScript](https://raw.githubusercontent.com/Bizcuit/vscode-ampscript/master/images/mcfs.gif)
+![MCE Download](https://raw.githubusercontent.com/saransh-garg-vml/vscode-mce01/main/images/mcfs.gif)
 
 AMPScript is the language used to program emails, content blocks, webpages and script activities in the Salesforce Marketing Cloud. It is not a simple task to write code directly in the UI of MC. This extensions helps you solve this problem.
 
@@ -15,7 +15,7 @@ You have two options on how to enable syntax highlighting:
 * Open a file that has an ".amp" or an ".ampscript" file extension
 * Manually set the language of the file to "AMPscript" (check the video below)
 
-![AMPScript](https://raw.githubusercontent.com/Bizcuit/vscode-ampscript/master/images/screenshot_video_howto.gif)
+![AMPScript](https://raw.githubusercontent.com/saransh-garg-vml/vscode-mce01/main/images/screenshot_video_howto.gif)
 
 
 ### How to connect to Marketing Cloud
@@ -32,9 +32,9 @@ As of now, you **can only edit existing assets** (content blocks, emails, cloudp
 * Grant access to all required BUs
 * Provide package details in the connection manager below, save it and connect
 * You'll find the entire Content Builder library in your File Explorer tab
-* To open Connection Manager next time press F1 (or 'CMD+Shift+P' on Mac and 'CTRL+Shift+P' on Windows) and start typing 'MCFS'. Find 'MCFS Connecton Manager' and then hit Enter
+* To open Connection Manager next time press F1 (or 'CMD+Shift+P' on Mac and 'CTRL+Shift+P' on Windows) and start typing 'MCED'. Find 'MCED: Connection Manager' and then hit Enter
 
-Detailed instructions with screenshots are available directly in the Connection Manager. To open Connection Manager press F1 (or 'CMD+Shift+P' on Mac and 'CTRL+Shift+P' on Windows) and start typing 'MCFS'. Find 'MCFS Connecton Manager' and then hit Enter.
+Detailed instructions with screenshots are available directly in the Connection Manager. To open Connection Manager press F1 (or 'CMD+Shift+P' on Mac and 'CTRL+Shift+P' on Windows) and start typing 'MCED'. Find 'MCED: Connection Manager' and then hit Enter.
 
 ### How to edit Content Builder assets directly from Visual Studio Code
 
@@ -59,41 +59,43 @@ Each asset folder includes a readonly '__raw.readonly.json' file. This is an API
 ### How to run an SQL query
 * Connect to your MC account
 * Find your SQL Query asset in the "SQL Queries" folder and open a "query.sql" file
-* Click a "Run SQL Query" button located in the top right corner of the editor (or run a "MCFS: Run SQL Query" command from the Command Pallet)
+* Click the "Run SQL Query" button located in the top right corner of the editor (or run the "MCED: Run SQL Query" command from the Command Palette)
 
-![SQL Queries](https://raw.githubusercontent.com/Bizcuit/vscode-ampscript/master/images/mcfs_runquery.jpg)
+![SQL Queries](https://raw.githubusercontent.com/saransh-garg-vml/vscode-mce01/main/images/mcfs_runquery.jpg)
 
 
 ### How to filter a Dataextension
 * Connect to your MC account
 * Find your Dataextension asset in the "Dataextensions" folder and open a "rows.csv" file
-* Click a "Filter a Dataextension" button located in the top right corner of the editor (or run a "MCFS: Filter a Dataextension" command from the Command Pallet)
+* Click the "Filter a Dataextension" button located in the top right corner of the editor (or run the "MCED: Filter a Dataextension" command from the Command Palette)
 * Set the filter and hit enter
 * Filter example: OrderID = 'ORD2123F2' AND SubscriberKey = 'ABC'
 
-![Dataextensions](https://raw.githubusercontent.com/Bizcuit/vscode-ampscript/master/images/mcfs_filterde.jpg)
+![Dataextensions](https://raw.githubusercontent.com/saransh-garg-vml/vscode-mce01/main/images/mcfs_filterde.jpg)
 
 ### How it looks and works
 
 #### Demo
 
-![Demo](https://raw.githubusercontent.com/Bizcuit/vscode-ampscript/master/images/screenshot_video.gif)
+![Demo](https://raw.githubusercontent.com/saransh-garg-vml/vscode-mce01/main/images/screenshot_video.gif)
 
 #### Hover snippets 
 
-![Hover snippets](https://raw.githubusercontent.com/Bizcuit/vscode-ampscript/master/images/screenshot_hoversnippets.jpg)
+![Hover snippets](https://raw.githubusercontent.com/saransh-garg-vml/vscode-mce01/main/images/screenshot_hoversnippets.jpg)
 
 #### Code snippets 
 
-![Function snippets](https://raw.githubusercontent.com/Bizcuit/vscode-ampscript/master/images/screenshot_snippets.png)
+![Function snippets](https://raw.githubusercontent.com/saransh-garg-vml/vscode-mce01/main/images/screenshot_snippets.png)
 
 #### Syntax highlighting
 
-![Syntax highlighting](https://raw.githubusercontent.com/Bizcuit/vscode-ampscript/master/images/screenshot.png)
+![Syntax highlighting](https://raw.githubusercontent.com/saransh-garg-vml/vscode-mce01/main/images/screenshot.png)
 
 
 
 #### Copyright 2017-2021 Sergey Agadzhanov
+
+MCE Download modifications copyright 2026 Saransh Garg. This project is derived from the original MIT-licensed AMPscript extension.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

@@ -61,16 +61,16 @@ After publishing, users can search for the `displayName` in VS Code Extensions. 
 
 Microsoft retires global PATs on **December 1, 2026**, so use Microsoft Entra workload identity for longer-term automated publishing. See the official [Publishing Extensions documentation](https://code.visualstudio.com/api/working-with-extensions/publishing-extension).
 
-## Rebranding Details Needed
+## Current Rebranding Details
 
 ```text
-Publisher ID:
-Extension machine name:
-Visible extension name:
-Description:
-Command category/button prefix:
-Repository URL:
-Author/display name:
-New icon path:
-Keep or rename "MCFS":
+Publisher ID: saransh-garg-vml
+Extension machine name: mced
+Visible extension name: MCE Download
+Description: Connect VS Code directly to your Marketing Cloud Account, download your content, data extensions, journeys and automations
+Command category/button prefix: MCED
+Repository URL: https://github.com/saransh-garg-vml/vscode-mce01.git
+Author/display name: Saransh Garg
+New icon path: images/logo.png
+MCFS namespace: Renamed to MCED
 ```

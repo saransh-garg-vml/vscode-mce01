@@ -14,9 +14,8 @@ let isConnectionManagerOpened = false;
 
 export async function activate(context: vscode.ExtensionContext) {
 	try {
-		context.subscriptions.push(Utils.getInstance().telemetry);
 		Utils.getInstance().sendTelemetryEvent("activated");
-		Utils.getInstance().log('MCFS extension activated');
+		Utils.getInstance().log('MCED extension activated');
 
 		const mcfs = new MCFS();
 		
@@ -24,12 +23,12 @@ export async function activate(context: vscode.ExtensionContext) {
 
 		ConnectionController.getInstance().setConnections(connections);
 		context.subscriptions.push(vscode.window.registerWebviewViewProvider(
-			'mcfs.dataExtensionInsights',
+			'mced.dataExtensionInsights',
 			new DataExtensionInsightsView(context.extensionUri),
 			{ webviewOptions: { retainContextWhenHidden: true } }
 		));
 
-		const panel = new WebPanel('mcfs_connection_manager', 'MCFS Connection Manager');
+		const panel = new WebPanel('mced_connection_manager', 'MCED Connection Manager');
 
 		const openConnectionManager = () => {
 			Utils.getInstance().sendTelemetryEvent("connection-manager");
@@ -63,9 +62,9 @@ export async function activate(context: vscode.ExtensionContext) {
 			panel.open(path.join(context.extensionPath, 'connection-manager'));
 		};
 
-		context.subscriptions.push(vscode.workspace.registerFileSystemProvider('mcfs', mcfs, { isCaseSensitive: false }));
+		context.subscriptions.push(vscode.workspace.registerFileSystemProvider('mced', mcfs, { isCaseSensitive: false }));
 
-		context.subscriptions.push(vscode.commands.registerCommand('mcfs.open', _ => {
+		context.subscriptions.push(vscode.commands.registerCommand('mced.open', _ => {
 			isConnectionManagerOpened = true;
 			openConnectionManager();
 		}));
@@ -124,13 +123,12 @@ export async function activate(context: vscode.ExtensionContext) {
 }
 
 export function deactivate() {
-	Utils.getInstance().telemetry.dispose();
 }
 
 function connect(connection: Connection): void {
 	Utils.getInstance().sendTelemetryEvent("connect");
 
-	const mcfsUri = vscode.Uri.parse('mcfs://' + connection.account_id + '/');
+	const mcfsUri = vscode.Uri.parse('mced://' + connection.account_id + '/');
 
 	//TODO: replace folder
 
@@ -139,7 +137,7 @@ function connect(connection: Connection): void {
 			vscode.workspace.workspaceFolders ? vscode.workspace.workspaceFolders.length : 0, 0,
 			{
 				uri: mcfsUri,
-				name: `MCFS_${connection.account_id}: ${connection.name}`
+				name: `MCED_${connection.account_id}: ${connection.name}`
 			}
 		);
 	}
@@ -188,7 +186,7 @@ function showPromoBanner(connectionManagerCallback: () => void) {
 				connectionManagerCallback();
 			}
 			else if (selection == "CHECK ON GITHUB") {
-				vscode.env.openExternal(vscode.Uri.parse('https://github.com/Bizcuit/vscode-ampscript'));
+				vscode.env.openExternal(vscode.Uri.parse('https://github.com/saransh-garg-vml/vscode-mce01'));
 			}
 			else if (selection == "NO") {
 				Utils.getInstance().setConfigField('notifications', 'dontShowConnectionManagerAlert', true);

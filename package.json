@@ -1,9 +1,12 @@
 {
-	"name": "ampscript",
+	"name": "mced",
 	"displayName": "MCE Download",
 	"description": "Connect VS Code directly to your Marketing Cloud Account, download your content, data extensions, journeys and automations",
 	"version": "1.0.1",
 	"publisher": "saransh-garg-vml",
+	"author": {
+		"name": "Saransh Garg"
+	},
 	"engines": {
 		"vscode": "^1.54.0"
 	},
@@ -20,21 +23,21 @@
 		"sfmc",
 		"mc",
 		"content builder",
-		"mcfs"
+		"mced"
 	],
 	"main": "./out/src/extension",
 	"scripts": {
-		"vscode:prepublish": "npm run compile; npm run connectionmanager",
+		"vscode:prepublish": "npm run compile && npm run connectionmanager",
 		"connectionmanager": "cd ./src/connection-manager && npm run build",
 		"compile": "tsc -p ./",
 		"watch": "tsc -watch -p ./",
 		"lint": "eslint . --ext .ts --fix"
 	},
 	"activationEvents": [
-		"onCommand:mcfs.open",
-		"onFileSystem:mcfs",
+		"onCommand:mced.open",
+		"onFileSystem:mced",
 		"onLanguage:AMPscript",
-		"onView:mcfs.dataExtensionInsights"
+		"onView:mced.dataExtensionInsights"
 	],
 	"contributes": {
 		"languages": [
@@ -66,23 +69,23 @@
 		],
 		"commands": [
 			{
-				"command": "mcfs.open",
+				"command": "mced.open",
 				"title": "Connection Manager",
-				"category": "MCFS"
+				"category": "MCED"
 			},
 			{
-				"command": "mcfs.dataextension.filter",
+				"command": "mced.dataextension.filter",
 				"title": "Filter a dataextension",
-				"category": "MCFS",
+				"category": "MCED",
 				"icon": {
 					"light": "images/filter.icon.svg",
 					"dark": "images/filter.icon.svg"
 				}
 			},
 			{
-				"command": "mcfs.query.run",
+				"command": "mced.query.run",
 				"title": "Run SQL Query",
-				"category": "MCFS",
+				"category": "MCED",
 				"icon": {
 					"light": "images/run.icon.svg",
 					"dark": "images/run.icon.svg"
@@ -92,23 +95,23 @@
 		"menus": {
 			"commandPalette": [
 				{
-					"command": "mcfs.dataextension.filter",
-					"when": "resourceExtname == .csv && resourceScheme == mcfs"
+					"command": "mced.dataextension.filter",
+					"when": "resourceExtname == .csv && resourceScheme == mced"
 				},
 				{
-					"command": "mcfs.query.run",
-					"when": "resourceExtname == .sql && resourceScheme == mcfs"
+					"command": "mced.query.run",
+					"when": "resourceExtname == .sql && resourceScheme == mced"
 				}
 			],
 			"editor/title": [
 				{
-					"when": "resourceExtname == .csv && resourceScheme == mcfs",
-					"command": "mcfs.dataextension.filter",
+					"when": "resourceExtname == .csv && resourceScheme == mced",
+					"command": "mced.dataextension.filter",
 					"group": "navigation"
 				},
 				{
-					"when": "resourceExtname == .sql && resourceScheme == mcfs",
-					"command": "mcfs.query.run",
+					"when": "resourceExtname == .sql && resourceScheme == mced",
+					"command": "mced.query.run",
 					"group": "navigation"
 				}
 			]
@@ -116,43 +119,44 @@
 		"viewsContainers": {
 			"activitybar": [
 				{
-					"id": "mcfsDataExtensions",
-					"title": "MCFS Data Extensions",
+					"id": "mcedDataExtensions",
+					"title": "MCED Data Extensions",
 					"icon": "images/logo.png"
 				}
 			]
 		},
 		"views": {
-			"mcfsDataExtensions": [
+			"mcedDataExtensions": [
 				{
-					"id": "mcfs.dataExtensionInsights",
+					"id": "mced.dataExtensionInsights",
 					"name": "Data Extension Insights",
-					"type": "webview"
+					"type": "webview",
+					"icon": "images/logo.png"
 				}
 			]
 		},
 		"viewsWelcome": [
 			{
 				"view": "explorer",
-				"contents": "Open MCFS connection manager and connect directly to your Salesforce Marketing Cloud account \n[Connect to SFMC](command:mcfs.open)",
+				"contents": "Open MCED Connection Manager and connect directly to your Salesforce Marketing Cloud account \n[Connect to SFMC](command:mced.open)",
 				"when": "true"
 			}
 		],
 		"configuration": {
-			"title": "MCFS Configuration",
+			"title": "MCED Configuration",
 			"properties": {
-				"mcfs.connections": {
-					"title": "A list of MCFS connections",
-					"description": "Use the Settings UI to edit the list of connectons. Run command 'MCFS: Connect to account'",
-					"markdownDescription": "Use the Settings UI to edit configurations. Run command 'MCFS: Connect to account'",
+				"mced.connections": {
+					"title": "A list of MCED connections",
+					"description": "Use the Settings UI to edit the list of connections. Run command 'MCED: Connection Manager'",
+					"markdownDescription": "Use the Settings UI to edit configurations. Run command 'MCED: Connection Manager'",
 					"type": "array",
 					"items": "object",
 					"default": []
 				},
-				"mcfs.notifications": {
+				"mced.notifications": {
 					"title": "Notification paramters",
-					"description": "Use the Settings UI to edit the list of connectons. Run command 'MCFS: Connect to account'",
-					"markdownDescription": "Use the Settings UI to edit configurations. Run command 'MCFS: Connect to account'",
+					"description": "Stores MCED notification preferences",
+					"markdownDescription": "Stores MCED notification preferences",
 					"type": "object",
 					"default": {
 						"hasOpenedConnectionManager": false,
@@ -163,11 +167,6 @@
 				}
 			}
 		}
-	},
-	"__metadata": {
-		"id": "47cde916-d321-4431-996b-009c1166cecf",
-		"publisherId": "887b5b26-7dcf-4f99-9675-b1935ffcdc24",
-		"publisherDisplayName": "Saransh Garg"
 	},
 	"repository": {
 		"type": "git",
@@ -181,6 +180,7 @@
 		"@types/xml2js": "^0.4.8",
 		"@typescript-eslint/eslint-plugin": "^4.19.0",
 		"@typescript-eslint/parser": "^4.19.0",
+		"@vscode/vsce": "^4.0.0",
 		"eslint": "^7.22.0",
 		"typescript": "^4.2.3"
 	},
@@ -188,7 +188,6 @@
 		"axios": "^0.27.2",
 		"jsep": "^0.4.0",
 		"papaparse": "^5.3.0",
-		"vscode-extension-telemetry": "^0.1.7",
 		"xml2js": "^0.4.23"
 	}
 }

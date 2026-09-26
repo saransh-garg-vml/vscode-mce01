@@ -1,7 +1,6 @@
 import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
-import TelemetryReporter from 'vscode-extension-telemetry';
 
 export class Utils {
 
@@ -9,10 +8,9 @@ export class Utils {
 	private channel: vscode.OutputChannel;
 	private isConfigUpdated = true;
 
-	public readonly telemetry: TelemetryReporter;
 	private telementryEventLog: Array<string> = [];
 
-	public static readonly extensionId = "sergey-agadzhanov.AMPscript";
+	public static readonly extensionId = "saransh-garg-vml.mced";
 	public static get extensionVersion(): string {
 		return vscode.extensions.getExtension(Utils.extensionId)?.packageJSON?.version || "";
 	}
@@ -27,12 +25,7 @@ export class Utils {
 	}
 
 	constructor() {
-		this.channel = vscode.window.createOutputChannel('MCFS');
-		this.telemetry = new TelemetryReporter(
-			"mcfs",
-			Utils.extensionVersion,
-			Buffer.from("OTc1M2Y5OTAtOTY0Yy00M2Q2LWFiYTEtYjZiMmQyZmVlZDNi", "base64").toString("utf-8")
-		);
+		this.channel = vscode.window.createOutputChannel('MCED');
 	}
 
 	sendTelemetryEvent(event: string, deduplicate = false, isError = false): void {
@@ -42,8 +35,7 @@ export class Utils {
                 else this.telementryEventLog.push(event);
             }
     
-            if (isError) this.telemetry.sendTelemetryErrorEvent(event);
-            else this.telemetry.sendTelemetryEvent(event);
+			this.log(`${isError ? 'Error event' : 'Event'}: ${event}`);
         }
         catch(err: any){
             this.logError(err)
@@ -105,12 +97,12 @@ export class Utils {
 	}
 
 	getConfig(section: string): any {
-		const config = vscode.workspace.getConfiguration('mcfs');
+		const config = vscode.workspace.getConfiguration('mced');
 		return config?.get(section);
 	}
 
 	setConfig(section: string, value: any): void {
-		const config = vscode.workspace.getConfiguration('mcfs');
+		const config = vscode.workspace.getConfiguration('mced');
 
 		const updateInterval = setInterval(_ => {
 			if (this.isConfigUpdated) {
