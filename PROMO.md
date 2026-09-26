@@ -1,12 +1,17 @@
+<<<<<<< Updated upstream
 # MCE Download v1.0.1
+=======
+# MCE Download v1.0.2
+>>>>>>> Stashed changes
 
 Welcome to **MCE Download** for Visual Studio Code. Connect to Salesforce Marketing Cloud to work with content, data extensions, journeys, automations, and queries. Share feedback in the [MCE Download repository](https://github.com/saransh-garg-vml/vscode-mce01).
 
 ```diff
 + === NEW FEATURES ===
 
-+ Extension now works with Corporate Proxies
-+ Support for shared Dataextensions (you need to be connected to Ent BU)
++ Fetch full Journey details (via "Get Interactions (Journeys) - By ID") when a Journey folder is opened
++ Read-only "_activities.readonly.json" and "_triggers.readonly.json" files for each Journey
++ Data Extension Insights view: search a Data Extension and see its usage and data flow
 ```
 
 ### To run an SQL query
@@ -27,28 +32,37 @@ Welcome to **MCE Download** for Visual Studio Code. Connect to Salesforce Market
 ![Dataextensions](https://raw.githubusercontent.com/saransh-garg-vml/vscode-mce01/main/images/mcfs_filterde.jpg)
 
 
-## SFMC DevTools published
-
-We have been talking about this behind the scenes already for quite some time but on March 26 the [SFMC DevTools](https://bit.ly/mc-devtools) were finally open-sourced. It allows you to up-/download all kinds of metadata, run mass-deployments to multiple BUs and on top it can be integrated into your IDE or CI/CD solution. And here comes the best part: We are looking into the possibility of integrating it into this VSCode extension.
+### To explore a Journey
+* Connect to your MC account
+* Open the "Journeys" folder and select a `<name>.journey` folder
+* MCE Download calls the Journey Builder "Get Interactions - By ID" API and generates `journey.json`, `_activities.readonly.json` and `_triggers.readonly.json` for that Journey
 
 
 # Direct connection to Marketing Cloud
 
 ## 1. Connect directly to your Marketing Cloud Account
 
+<<<<<<< Updated upstream
 With a quick 5 minutes setup you'll be able to edit content blocks, emails, cloudpages, dataextensions and SQL queries without leaving Visual Studio Code. You can now avoid frequent copy-pasting and focus on your work. Have a look a quick demo below. To open Connection Manager: 
 * Press F1 (or 'CMD+Shift+P' on Mac and 'CTRL+Shift+P' on Windows) 
 * Start typing 'MCED'
 * Find 'MCED: Connection Manager' and then press Enter
 * You'll find detailed setup instuctions there
+=======
+With a quick 5 minutes setup you'll be able to edit content blocks, emails, cloudpages, dataextensions and SQL queries, and browse Automations and Journeys, without leaving Visual Studio Code. You can now avoid frequent copy-pasting and focus on your work. Have a look a quick demo below. To open Connection Manager:
+* Press F1 (or 'CMD+Shift+P' on Mac and 'CTRL+Shift+P' on Windows)
+* Start typing 'MCED'
+* Find 'MCED: Connection Manager' and then press Enter
+* You'll find detailed setup instructions there
+>>>>>>> Stashed changes
 
 ![MCE Download](https://raw.githubusercontent.com/saransh-garg-vml/vscode-mce01/main/images/mcfs.gif)
 
 ## 1.a How to connect to Marketing Cloud
 
-As of now, you **can only edit existing assets** (content blocks, emails, cloudpage and json message). Functionality that is not supported at the moment: create new asset, rename asset, move asset to a different folder, delete asset.
+As of now, you **can only edit existing assets** (content blocks, emails, cloudpage and json message). Automations and Journeys are read-only. Functionality that is not supported at the moment: create new asset, rename asset, move asset to a different folder, delete asset.
 
-* In your MC accout, create a new installed package and add a 'Server-to-Server' API integration Component
+* In your MC account, create a new installed package and add a 'Server-to-Server' API integration Component
 * Add the following permissions:
 	* CHANNELS: Email (Read and Write)
 	* CHANNELS: Web (Read, Write, Publish)
@@ -67,6 +81,8 @@ Detailed instructions with screenshots are available directly in the Connection 
 * Landing Pages (created with Content Builder editor)
 * Dataextensions (Edit data in dataextensions, apply filters, export to CSV etc.)
 * SQL Queries (Edit queries and Run them)
+* Automations (read-only, with normalized activity details)
+* Journeys (read-only, with detailed activities and triggers)
 
 ### 1.b How to edit assets directly from Visual Studio Code
 
@@ -76,6 +92,7 @@ Each asset is presented as a folder that starts with an 'Ω' symbol. You can eas
 * 🟨 - templates
 * 🟩 - cloudpages
 * 🟪 - mobile messages
+* 🟧 - automations
 
 Each asset folder includes a readonly '__raw.readonly.json' file. This is an API representation of the asset. You can not modify. Instead you can modify all other files available under the asset folder. Each file represents a specific part of the asset. For the template based email you will see for example smth like: 
 * _htmlcontent.amp - template used to create an email
