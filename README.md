@@ -2,11 +2,11 @@
 
 ![MCE Download](https://raw.githubusercontent.com/saransh-garg-vml/vscode-mce01/main/images/mcfs.gif)
 
-AMPScript is the language used to program emails, content blocks, webpages and script activities in the Salesforce Marketing Cloud. It is not a simple task to write code directly in the UI of MC. This extensions helps you solve this problem.
+AMPScript is the language used to program emails, content blocks, webpages and script activities in the Salesforce Marketing Cloud. It is not a simple task to write code directly in the UI of MC. This extension helps you solve this problem.
 
-This extension allows you to connect Visual Studio Code directly to your MC Account, enables syntax highlighting for AMPScript, has built-in documentation for all AMPScript functions and also adds code snippets for language elements and functions. Each snippet includes a detailed description of the function and its parameters. Snippets also show up when you hover a function name.
+**MCE Download** allows you to connect Visual Studio Code directly to your Marketing Cloud account, enables syntax highlighting for AMPScript, has built-in documentation for all AMPScript functions and also adds code snippets for language elements and functions. Each snippet includes a detailed description of the function and its parameters. Snippets also show up when you hover a function name.
 
-With direct connection to MC you can: easily change content in MC without leaving your text editor, save time and avoid frequent copy-pasting. It also helps you to better control the content of your emails, content blocks and cloud pages by exposing additional content attributes that are not available in the UI of MC.
+With a direct connection to MC you can: easily change content in MC without leaving your text editor, save time and avoid frequent copy-pasting, download and inspect Data Extensions, Automations and Journeys, and better control the content of your emails, content blocks and cloud pages by exposing additional content attributes that are not available in the UI of MC.
 
 ### How to enable syntax highlighting
 
@@ -20,9 +20,9 @@ You have two options on how to enable syntax highlighting:
 
 ### How to connect to Marketing Cloud
 
-As of now, you **can only edit existing assets** (content blocks, emails, cloudpage, json message, sql queries and dataextensions). Functionality that is not supported at the moment: create new asset, rename asset, move asset to a different folder, delete asset.
+As of now, you **can only edit existing assets** (content blocks, emails, cloudpage, json message, sql queries and dataextensions). Automations and Journeys are read-only. Functionality that is not supported at the moment: create new asset, rename asset, move asset to a different folder, delete asset.
 
-* In your MC accout, create a new installed package and add a 'Server-to-Server' API integration Component
+* In your MC account, create a new installed package and add a 'Server-to-Server' API integration Component
 * Add the following permissions:
 	* CHANNELS: Email (Read and Write)
 	* CHANNELS: Web (Read, Write, Publish)
@@ -44,8 +44,9 @@ Each asset is presented as a folder that starts with an 'Ω' symbol. You can eas
 * 🟨 - templates
 * 🟩 - cloudpages
 * 🟪 - mobile messages
+* 🟧 - automations
 
-Each asset folder includes a readonly '__raw.readonly.json' file. This is an API representation of the asset. You can not modify. Instead you can modify all other files available under the asset folder. Each file represents a specific part of the asset. For the template based email you will see for example smth like: 
+Each asset folder includes a readonly '__raw.readonly.json' file. This is an API representation of the asset. You can not modify it. Instead you can modify all other files available under the asset folder. Each file represents a specific part of the asset. For the template based email you will see for example smth like: 
 * _htmlcontent.amp - template used to create an email
 * _subject.amp - subject line of the email
 * _preheader.amp - preheader of the email
@@ -72,6 +73,19 @@ Each asset folder includes a readonly '__raw.readonly.json' file. This is an API
 * Filter example: OrderID = 'ORD2123F2' AND SubscriberKey = 'ABC'
 
 ![Dataextensions](https://raw.githubusercontent.com/saransh-garg-vml/vscode-mce01/main/images/mcfs_filterde.jpg)
+<<<<<<< Updated upstream
+=======
+
+### How to explore Automations and Journeys
+
+* Connect to your MC account
+* Open the "Automations" folder to browse each Automation's steps and activities as read-only JSON
+* Open the "Journeys" folder and select a `<name>.journey` folder to fetch full Journey details, including generated `_activities.readonly.json` and `_triggers.readonly.json` files
+
+### Data Extension Insights
+
+Use the "Data Extension Insights" view in the MCED activity bar to search for a Data Extension by name and see where it's used (SQL Queries, Automations, Journeys and more), along with its data flow.
+>>>>>>> Stashed changes
 
 ### How it looks and works
 
@@ -95,10 +109,15 @@ Each asset folder includes a readonly '__raw.readonly.json' file. This is an API
 
 #### Copyright 2017-2021 Sergey Agadzhanov
 
+<<<<<<< Updated upstream
 MCE Download modifications copyright 2026 Saransh Garg. This project is derived from the original MIT-licensed AMPscript extension.
+=======
+MCE Download is derived from the original MIT-licensed AMPscript [MCFS] extension by Sergey Agadzhanov, with additional features and modifications copyright 2026 Saransh Garg.
+>>>>>>> Stashed changes
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
