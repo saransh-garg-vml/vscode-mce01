@@ -73,8 +73,6 @@ Each asset folder includes a readonly '__raw.readonly.json' file. This is an API
 * Filter example: OrderID = 'ORD2123F2' AND SubscriberKey = 'ABC'
 
 ![Dataextensions](https://raw.githubusercontent.com/saransh-garg-vml/vscode-mce01/main/images/mcfs_filterde.jpg)
-<<<<<<< Updated upstream
-=======
 
 ### How to explore Automations and Journeys
 
@@ -85,7 +83,6 @@ Each asset folder includes a readonly '__raw.readonly.json' file. This is an API
 ### Data Extension Insights
 
 Use the "Data Extension Insights" view in the MCED activity bar to search for a Data Extension by name and see where it's used (SQL Queries, Automations, Journeys and more), along with its data flow.
->>>>>>> Stashed changes
 
 ### How it looks and works
 
@@ -109,11 +106,7 @@ Use the "Data Extension Insights" view in the MCED activity bar to search for a 
 
 #### Copyright 2017-2021 Sergey Agadzhanov
 
-<<<<<<< Updated upstream
-MCE Download modifications copyright 2026 Saransh Garg. This project is derived from the original MIT-licensed AMPscript extension.
-=======
 MCE Download is derived from the original MIT-licensed AMPscript [MCFS] extension by Sergey Agadzhanov, with additional features and modifications copyright 2026 Saransh Garg.
->>>>>>> Stashed changes
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

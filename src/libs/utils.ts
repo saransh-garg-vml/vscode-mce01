@@ -26,14 +26,6 @@ export class Utils {
 
 	constructor() {
 		this.channel = vscode.window.createOutputChannel('MCED');
-<<<<<<< Updated upstream
-=======
-		this.telemetry = new TelemetryReporter(
-			"mced",
-			Utils.extensionVersion,
-			Buffer.from("OTc1M2Y5OTAtOTY0Yy00M2Q2LWFiYTEtYjZiMmQyZmVlZDNi", "base64").toString("utf-8")
-		);
->>>>>>> Stashed changes
 	}
 
 	sendTelemetryEvent(event: string, deduplicate = false, isError = false): void {

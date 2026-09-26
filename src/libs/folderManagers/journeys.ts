@@ -81,9 +81,10 @@ export class JourneysFolderManager extends FolderManager {
 		return ['.json'];
 	}
 
-	private extractFiles(journey: any): Array<AssetFile> {
+	private extractFiles(journey: any, entryEvent?: any): Array<AssetFile> {
 		return [
-			new AssetFile('journey.json', JSON.stringify(journey, null, 2), ''),
+			new AssetFile('completeJourney.json', JSON.stringify(journey, null, 2), ''),
+			new AssetFile('_entryEvent.readonly.json', JSON.stringify(entryEvent ?? { message: 'No event definition found for this Journey.' }, null, 2), ''),
 			new AssetFile('_activities.readonly.json', JSON.stringify(journey.activities || [], null, 2), ''),
 			new AssetFile('_triggers.readonly.json', JSON.stringify(journey.triggers || [], null, 2), '')
 		];
@@ -103,14 +104,34 @@ export class JourneysFolderManager extends FolderManager {
 			url: `/interaction/v1/interactions/${encodeURIComponent(String(id))}`
 		});
 		const details = await ConnectionController.getInstance().restRequest(assetUri.connectionId, config);
+		const entryEvent = await this.getEntryEventDefinition(assetUri.connectionId, details);
 
 		return new Asset(
 			details.name || details.definitionName || summaryAsset.name,
 			summaryAsset.directoryName,
 			JSON.stringify(details, null, 2),
 			assetUri.connectionId,
-			this.extractFiles(details)
+			this.extractFiles(details, entryEvent)
 		);
+	}
+
+	private async getEntryEventDefinition(connectionId: string, journey: any): Promise<any | undefined> {
+		const trigger = (journey.triggers || [])[0];
+		const key = trigger?.key || trigger?.eventDefinitionKey || trigger?.metaData?.eventDefinitionKey;
+
+		if (!key) return undefined;
+
+		const config = new ApiRequestConfig({
+			method: 'get',
+			url: `/interaction/v1/eventDefinitions/key:${encodeURIComponent(String(key))}`
+		});
+
+		try {
+			return await ConnectionController.getInstance().restRequest(connectionId, config);
+		}
+		catch (_) {
+			return undefined;
+		}
 	}
 
 	private getItems(data: any): Array<any> {
