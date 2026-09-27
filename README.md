@@ -78,7 +78,7 @@ Each asset folder includes a readonly '__raw.readonly.json' file. This is an API
 
 * Connect to your MC account
 * Open the "Automations" folder to browse each Automation's steps and activities as read-only JSON
-* Open the "Journeys" folder and select a `<name>.journey` folder to fetch full Journey details, including generated `_activities.readonly.json` and `_triggers.readonly.json` files
+* Open the "Journeys" folder and select a `<name>.journey` folder to fetch full Journey details, including generated `completeJourney.json`, `_entryEvent.readonly.json`, `_activities.readonly.json` and `_triggers.readonly.json` files
 
 ### Data Extension Insights
 
