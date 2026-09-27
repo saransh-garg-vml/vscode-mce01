@@ -117,7 +117,7 @@ export class JourneysFolderManager extends FolderManager {
 
 	private async getEntryEventDefinition(connectionId: string, journey: any): Promise<any | undefined> {
 		const trigger = (journey.triggers || [])[0];
-		const key = trigger?.key || trigger?.eventDefinitionKey || trigger?.metaData?.eventDefinitionKey;
+		const key = trigger?.eventDefinitionKey || trigger?.metaData?.eventDefinitionKey;
 
 		if (!key) return undefined;
 
