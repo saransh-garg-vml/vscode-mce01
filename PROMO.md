@@ -33,7 +33,7 @@ Welcome to **MCE Download** for Visual Studio Code. Connect to Salesforce Market
 ### To explore a Journey
 * Connect to your MC account
 * Open the "Journeys" folder and select a `<name>.journey` folder
-* MCE Download calls the Journey Builder "Get Interactions - By ID" API and generates `completeJourney.json`, `_activities.readonly.json`, `_triggers.readonly.json` and `_entryEvent.readonly.json` for that Journey
+* MCE Download calls the Journey Builder "Get Interactions - By ID" API and generates `completeJourney.json`, `_entryEvent.readonly.json`, `_activities.readonly.json` and `_triggers.readonly.json` for that Journey
 
 
 # Direct connection to Marketing Cloud
