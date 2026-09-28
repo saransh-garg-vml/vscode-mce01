@@ -1,4 +1,4 @@
-# MCE Download v1.0.3
+# MCE Download v1.0.4
 
 Welcome to **MCE Download** for Visual Studio Code. Connect to Salesforce Marketing Cloud to work with content, data extensions, journeys, automations, and queries. Share feedback in the [MCE Download repository](https://github.com/saransh-garg-vml/vscode-mce01).
 
@@ -10,6 +10,8 @@ Welcome to **MCE Download** for Visual Studio Code. Connect to Salesforce Market
 + Read-only "_entryEvent.readonly.json" file with the Journey's entry event definition (via "Get Event Definitions - By Key")
 + Renamed "journey.json" to "completeJourney.json"
 + Data Extension Insights view: search a Data Extension and see its usage and data flow
++ Automation folders load on demand; detailed automation JSON loads when opened
++ REST API errors now include the HTTP status and response message
 ```
 
 ### To run an SQL query

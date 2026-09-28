@@ -3,20 +3,18 @@ All notable changes to the "MCE Download" extension will be documented in this f
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [1.0.4] - 2026-09-28
+- Added folder-based lazy loading for Automations
+- Deferred each Automation's detailed API request until its `automation.json` file is opened
+- Improved REST API error messages to include HTTP status and response details
+
 ## [1.0.3] - 2026-09-27
 - Fetch the Journey's entry event definition via "Get Event Definitions - By Key" into `_entryEvent.readonly.json`
 - Renamed `journey.json` to `completeJourney.json`
 
 ## [1.0.2] - 2026-09-26
-- Renamed `journey.json` to `completeJourney.json`
-
-## [1.0.2] - 2026-09-26
 - Fetch full Journey details ("Get Interactions - By ID") when a Journey folder is opened
 - Added `_activities.readonly.json` and `_triggers.readonly.json` for each Journey
-
-## [1.0.2] - 2026-09-26
-- Fetch full Journey details when a Journey folder is opened
-- Add read-only JSON files for Journey activities and triggers
 
 ## [3.0.6] - 2022-11-15
 - Support for Shared Dataextensions (only when connected to ENT BU)
