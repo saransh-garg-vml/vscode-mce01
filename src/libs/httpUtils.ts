@@ -68,22 +68,15 @@ export class HttpUtils {
 
 					if(res.headers['content-encoding'] == 'gzip'){
 						zlib.gunzip(buffer, (err, output: Buffer) => {
-							if(!err && res?.statusCode && res.statusCode >= 200 && res.statusCode < 300){
-								resolve(output.toString());
-							}
-							else{
-								reject(err);
-							}
+                            if (err) {
+                                reject(err);
+                                return;
+                            }
+                            this.resolveResponse(res, output.toString(), resolve, reject);
 						});
 					}
 					else{
-						const output = buffer.toString();
-						if(res?.statusCode && res.statusCode >= 200 && res.statusCode < 300){
-							resolve(output);
-						}
-						else{
-							reject(output);
-						}
+                        this.resolveResponse(res, buffer.toString(), resolve, reject);
 					}
 				});
             });
@@ -99,5 +92,14 @@ export class HttpUtils {
 
             req.end();
         });
+    }
+
+    private resolveResponse(res: IncomingMessage, body: string, resolve: (body: string) => void, reject: (error: Error) => void): void {
+        if (res.statusCode !== undefined && res.statusCode >= 200 && res.statusCode < 300) {
+            resolve(body);
+            return;
+        }
+
+        reject(new Error(`HTTP ${res.statusCode || 'unknown'} ${res.statusMessage || ''}: ${body}`.trim()));
     }
 }
